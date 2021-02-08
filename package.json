@@ -9,7 +9,8 @@
     "start": "tabris serve -a -w"
   },
   "dependencies": {
-    "tabris": "~3.7.1"
+    "tabris": "~3.7.1",
+    "tabris-decorators": "^3.7.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.14.2",
