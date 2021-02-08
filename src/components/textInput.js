@@ -1,3 +1,4 @@
+import { TextInput } from 'tabris';
 import { setListView, printAutoCompletion } from './listView.js';
 import { addPerk } from './perk.js';
 
