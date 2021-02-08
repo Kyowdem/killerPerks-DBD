@@ -2,7 +2,6 @@ import { TextView, contentView, TextInput } from 'tabris';
 import { Cell, ListView } from 'tabris-decorators';
 import { getJSON } from './components/JSON.js';
 import { addPerk, MAJPerk } from './components/perk.js';
-import { autoCompletion, printAutoCompletion, autoCompletionToList } from './components/listView.js';
 
 
 const defaultApp = function () {

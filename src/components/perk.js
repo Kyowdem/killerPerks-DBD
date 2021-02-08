@@ -1,4 +1,4 @@
-import { Button, TextView, contentView, TextInput, AlertDialog } from 'tabris';
+import { Button, TextView, contentView, AlertDialog } from 'tabris';
 import { putJSON } from './JSON.js'
 
 
