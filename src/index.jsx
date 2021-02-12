@@ -4,12 +4,6 @@ import { getJSON } from './components/JSON.js';
 import { addPerk, MAJPerk } from './components/perk.js';
 
 
-const defaultApp = function () {
-  MAJPerk();
-  visibility(0);
-  // killerPerksJSON = getJSON();
-}
-
 const perksWritted = ['Apple', 'Banana', 'Cherry'];
 const collectionPerk = new CollectionView({
   left: "20%", top: "prev() 16", right: 0, bottom: 0,
@@ -73,6 +67,13 @@ const setListView = function (list = []) {
 const clearAll = function () {
   inputPerk.text = '';
   setListView();
+}
+
+const defaultApp = function () {
+  MAJPerk();
+  visibility(0);
+  // killerPerksJSON = getJSON();
+  // collectionPerk.insert("test");
 }
 
 
