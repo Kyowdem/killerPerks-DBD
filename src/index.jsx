@@ -1,20 +1,10 @@
-import { TextView, contentView, TextInput, CollectionView } from 'tabris';
+import { TextView, contentView, TextInput } from 'tabris';
 import { Cell, ListView } from 'tabris-decorators';
 import { getJSON } from './components/JSON.js';
 import { addPerk, MAJPerk } from './components/perk.js';
 
 
-var perksWritted = ['Apple', 'Banana', 'Cherry'];
 var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
-
-const collectionPerk = new CollectionView({
-  left: "20%", top: "prev() 16", right: 0, bottom: 0,
-  itemCount: perksWritted.length,
-  createCell: () => new TextView(),
-  updateCell: (view, index) =>  {
-    view.text = perksWritted[index];
-  }
-});
 
 const inputPerk = new TextInput({
   top: 24,
@@ -83,8 +73,7 @@ contentView.append(
     <Cell selectable padding={6} height={25}>
       <TextView centerY bind-text='item' font='12px' />
     </Cell>
-  </ListView>,
-  collectionPerk
+  </ListView>
 );
 
 defaultApp();
