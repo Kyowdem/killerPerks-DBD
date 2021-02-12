@@ -3,6 +3,7 @@ import { Cell, ListView } from 'tabris-decorators';
 import { getJSON } from './components/JSON.js';
 import { addPerk, MAJPerk } from './components/perk.js';
 
+// https://playground.tabris.com/?gitref=v3.7.0&snippet=collectionview-refreshenabled.jsx
 
 var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
 const perksWritted = ['Apple', 'Banana', 'Cherry'];
