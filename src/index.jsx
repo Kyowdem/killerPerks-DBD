@@ -4,7 +4,9 @@ import { getJSON } from './components/JSON.js';
 import { addPerk, MAJPerk } from './components/perk.js';
 
 
-const perksWritted = ['Apple', 'Banana', 'Cherry'];
+var perksWritted = ['Apple', 'Banana', 'Cherry'];
+var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
+
 const collectionPerk = new CollectionView({
   left: "20%", top: "prev() 16", right: 0, bottom: 0,
   itemCount: perksWritted.length,
@@ -21,8 +23,6 @@ const inputPerk = new TextInput({
   message: "Entrer le nom d'un perk"
 }).onAccept(function () { addPerk(this.text) }).onInput(() => (inputPerk.text.length >= 3) ? printAutoCompletion() : setListView());
 
-
-var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
 
 // Return an array of autocomplete of input user 
 const autoCompletion = function () {
@@ -73,7 +73,6 @@ const defaultApp = function () {
   MAJPerk();
   visibility(0);
   // killerPerksJSON = getJSON();
-  // collectionPerk.insert("test");
 }
 
 
