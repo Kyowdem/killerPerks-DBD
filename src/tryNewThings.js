@@ -1,13 +1,13 @@
 import {CollectionView, Composite, contentView, TextView, TextInput} from 'tabris';
 
 const items = [
-  {title: 'Up for lunch?', sender: 'John Smith', time: '11:35'},
-  {title: 'JavaScript for mobile applications', sender: 'JavaScript Newsletter', time: '08:03'},
-  {title: 'This is just a spam message', sender: 'Spammer', time: '04:32'},
-  {title: 'CoolGrocery Discount Newsletter', sender: 'Local CoolGrocery', time: 'yesterday'},
-  {title: 'Cinema this weekend?', sender: 'Robert J. Schmidt', time: 'yesterday'},
-  {title: 'Coffee Club Newsletter', sender: 'Coffee Club', time: 'yesterday'},
-  {title: 'Fraud mail', sender: 'Unsuspicious Jack', time: 'yesterday'}
+  {title: 'Up for lunch?', sender: 'John Smith'},
+  {title: 'JavaScript for mobile applications', sender: 'JavaScript Newsletter'},
+  {title: 'This is just a spam message', sender: 'Spammer'},
+  {title: 'CoolGrocery Discount Newsletter', sender: 'Local CoolGrocery'},
+  {title: 'Cinema this weekend?', sender: 'Robert J. Schmidt'},
+  {title: 'Coffee Club Newsletter', sender: 'Coffee Club'},
+  {title: 'Fraud mail', sender: 'Unsuspicious Jack'}
 ];
 
 
