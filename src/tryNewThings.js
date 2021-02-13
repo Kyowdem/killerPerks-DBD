@@ -10,13 +10,11 @@ const items = [
   {title: 'Fraud mail', sender: 'Unsuspicious Jack'}
 ];
 
-
-
 contentView.append(
   new TextInput({
     left: 10, right: 10,
     message: 'Name'
-  }).onInput(({text}) => console.log(`Text changed to ${text}`)),
+  }).onAccept(({text}) => console.log(text)),
   <CollectionView
       top='prev()'
       stretch
