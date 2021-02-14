@@ -19,7 +19,7 @@ contentView.append(
     top='prev()'
     stretch
     itemCount={items.length}
-    cellHeight={64}
+    cellHeight={50}
     createCell={createCell}
     updateCell={updateCell} />
 );
