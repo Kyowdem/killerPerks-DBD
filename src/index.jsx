@@ -14,7 +14,7 @@ contentView.append(
   new TextInput({
     left: 10, right: 10,
     message: 'Name'
-  }).onAccept(({ text }) => test(text)),
+  }).onAccept(({ text }) => addNewItem(text)),
   <CollectionView
     top='prev()'
     stretch
@@ -24,8 +24,14 @@ contentView.append(
     updateCell={updateCell} />
 );
 
-function test(text) {
-  console.log(text);
+function addNewItem(text) {
+  items.push(text);
+  console.log(items);
+  $('CollectionView').first().refresh();
+
+  // Stop focused input
+  $('TextInput').first().focused = false;
+  $('TextInput').first().text = "";
 }
 
 function createCell() {
