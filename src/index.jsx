@@ -1,13 +1,9 @@
 import { CollectionView, Composite, contentView, TextView, TextInput } from 'tabris';
 
 var items = [
-  'John Smith',
-  'JavaScript Newsletter',
-  'Spammer',
-  'Local CoolGrocery',
-  'Robert J. Schmidt',
-  'Coffee Club',
-  'Unsuspicious Jack'
+  'chilli barbecue',
+  'sort: ruine',
+  'sort: immortel',
 ];
 
 contentView.append(
