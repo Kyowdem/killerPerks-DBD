@@ -21,10 +21,15 @@ contentView.append(
 );
 
 function addNewItem(perk) {
-  items.push(perk);
+  if(items.length < 4) {
+    items.push(perk);
+    $("CollectionView").first().refresh();
+    $("CollectionView").first().insert(0);
+  }
+  if(items.length == 4) {
+    // Afficher le message pour envoyer les donnees dans la base
+  }
 
-  $("CollectionView").first().refresh();
-  $("CollectionView").first().insert(0);
 
   // Stop focused input
   $('TextInput').first().focused = false;
