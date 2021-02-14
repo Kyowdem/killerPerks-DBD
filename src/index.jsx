@@ -24,10 +24,11 @@ contentView.append(
     updateCell={updateCell} />
 );
 
-function addNewItem(text) {
-  items.push(text);
-  console.log(items);
-  $('CollectionView').first().refresh();
+function addNewItem(perk) {
+  items.push(perk);
+
+  $("CollectionView").first().refresh();
+  $("CollectionView").first().insert(0);
 
   // Stop focused input
   $('TextInput').first().focused = false;
