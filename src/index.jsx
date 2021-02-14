@@ -1,83 +1,89 @@
-import { TextView, contentView, TextInput } from 'tabris';
-import { Cell, ListView } from 'tabris-decorators';
-import { getJSON } from './components/JSON.js';
-import { addPerk, MAJPerk } from './components/perk.js';
+import { CollectionView, Composite, contentView, TextView, TextInput } from 'tabris';
 
-// https://playground.tabris.com/?gitref=v3.7.0&snippet=collectionview-refreshenabled.jsx
-
-var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
-
-
-const inputPerk = new TextInput({
-  top: 24,
-  left: '15%',
-  right: '15%',
-  message: "Entrer le nom d'un perk"
-}).onAccept(function () { addPerk(this.text) }).onInput(() => (inputPerk.text.length >= 3) ? printAutoCompletion() : setListView());
-
-
-var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
-
-// Return an array of autocomplete of input user 
-const autoCompletion = function () {
-  if (inputPerk.text == "") return [];
-  var autoPerk = [];
-
-  for (let prop in killerPerksJSON) {
-    if (prop.substring(0, inputPerk.text.length) == inputPerk.text)
-      if (autoPerk.length <= 5)
-        autoPerk.push(prop);
-  }
-  return autoPerk;
-}
-
-// Print autocompletion
-const printAutoCompletion = function () {
-  var autoPerk = autoCompletion();
-  setListView(autoPerk);
-}
-
-// when click to list, set text to the list
-const autoCompletionToList = function (el) {
-  addPerk(el.item);
-  setListView();
-}
-
-// show/hide ListView
-const visibility = function (visible = 1) {
-  $(ListView).first().bottom = (visible ? '50' : '100%');
-}
-
-// set list with an array and refresh it
-const setListView = function (list = []) {
-  if (list.length) visibility(1);
-  else visibility(0);
-
-  $(ListView).first().items = list;
-  $(ListView).first().refresh();
-}
-
-// set all to empty
-const clearAll = function () {
-  inputPerk.text = '';
-  setListView();
-}
-
-const defaultApp = function () {
-  MAJPerk();
-  visibility(0);
-  // killerPerksJSON = getJSON();
-}
-
+const items = [
+  { title: 'Up for lunch?', sender: 'John Smith' },
+  { title: 'JavaScript for mobile applications', sender: 'JavaScript Newsletter' },
+  { title: 'This is just a spam message', sender: 'Spammer' },
+  { title: 'CoolGrocery Discount Newsletter', sender: 'Local CoolGrocery' },
+  { title: 'Cinema this weekend?', sender: 'Robert J. Schmidt' },
+  { title: 'Coffee Club Newsletter', sender: 'Coffee Club' },
+  { title: 'Fraud mail', sender: 'Unsuspicious Jack' }
+];
 
 contentView.append(
-  inputPerk,
-  <ListView background="#FFD400" left="60" top="90" right="60" bottom="50"
-    stretch onSelect={autoCompletionToList} items={autoCompletion()}>
-    <Cell selectable padding={6} height={25}>
-      <TextView centerY bind-text='item' font='12px' />
-    </Cell>
-  </ListView>
+  new TextInput({
+    left: 10, right: 10,
+    message: 'Name'
+  }).onAccept(({ text }) => console.log(text)),
+  <CollectionView
+    top='prev()'
+    stretch
+    itemCount={items.length}
+    cellHeight={64}
+    createCell={createCell}
+    updateCell={updateCell} />
 );
 
-defaultApp();
+function createCell() {
+  return (
+    <Composite background='gray'>
+      <Composite id='container' stretch background='white' onPanHorizontal={handlePan}>
+        <TextView id='senderText' left={16} top={8} font='medium 16px' />
+        <TextView id='titleText' left={16} bottom={8} />
+      </Composite>
+      <Composite stretchX height={1} background='#eeeeee' />
+    </Composite>
+  );
+}
+
+function updateCell(view, index) {
+  const item = items[index];
+  const container = view.find('#container').only();
+  container.item = item;
+  container.transform = { translationX: 0 };
+  view.find(TextView).only('#senderText').text = item.sender;
+  view.find(TextView).only('#titleText').text = item.title;
+}
+
+async function handlePan(event) {
+  const { target, state, translationX } = event;
+  target.transform = { translationX };
+  if (state === 'end') {
+    await handlePanFinished(event);
+  }
+}
+
+async function handlePanFinished({ target, velocityX, translationX }) {
+  const beyondCenter = Math.abs(translationX) > target.bounds.width / 2;
+  const fling = Math.abs(velocityX) > 200;
+  const sameDirection = direction(velocityX) === direction(translationX);
+  // When swiped beyond the center, trigger dismiss if flinged in the same direction or let go.
+  // Otherwise, detect a dismiss only if flinged in the same direction.
+  const dismiss = beyondCenter ? (sameDirection || !fling) : (sameDirection && fling);
+  if (dismiss) {
+    await animateDismiss(target, translationX);
+  } else {
+    await animateCancel(target);
+  }
+}
+
+async function animateDismiss(target, translationX) {
+  await target.animate({
+    transform: { translationX: direction(translationX) * target.bounds.width }
+  }, {
+    duration: 200,
+    easing: 'ease-out'
+  });
+  const index = items.indexOf(target.item);
+  items.splice(index, 1);
+  $(CollectionView).only().remove(index);
+  console.log(items);
+}
+
+async function animateCancel(target) {
+  return target.animate({ transform: { translationX: 0 } }, { duration: 200, easing: 'ease-out' });
+}
+
+function direction(offset) {
+  return offset ? offset < 0 ? -1 : 1 : 0;
+}
