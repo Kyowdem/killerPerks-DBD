@@ -6,17 +6,7 @@ import { addPerk, MAJPerk } from './components/perk.js';
 // https://playground.tabris.com/?gitref=v3.7.0&snippet=collectionview-refreshenabled.jsx
 
 var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
-const perksWritted = ['Apple', 'Banana', 'Cherry'];
 
-
-const collectionPerk = new CollectionView({
-  left: "20%", top: "prev() 16", right: 0, bottom: 0,
-  itemCount: perksWritted.length,
-  createCell: () => new TextView(),
-  updateCell: (view, index) =>  {
-    view.text = perksWritted[index];
-  }
-});
 
 const inputPerk = new TextInput({
   top: 24,
@@ -77,7 +67,6 @@ const defaultApp = function () {
   MAJPerk();
   visibility(0);
   // killerPerksJSON = getJSON();
-  // collectionPerk.insert("test");
 }
 
 
