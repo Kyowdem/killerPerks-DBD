@@ -1,20 +1,20 @@
 import { CollectionView, Composite, contentView, TextView, TextInput } from 'tabris';
 
-const items = [
-  { sender: 'John Smith' },
-  { sender: 'JavaScript Newsletter' },
-  { sender: 'Spammer' },
-  { sender: 'Local CoolGrocery' },
-  { sender: 'Robert J. Schmidt' },
-  { sender: 'Coffee Club' },
-  { sender: 'Unsuspicious Jack' }
+var items = [
+  'John Smith',
+  'JavaScript Newsletter',
+  'Spammer',
+  'Local CoolGrocery',
+  'Robert J. Schmidt',
+  'Coffee Club',
+  'Unsuspicious Jack'
 ];
 
 contentView.append(
   new TextInput({
     left: 10, right: 10,
     message: 'Name'
-  }).onAccept(({ text }) => console.log(text)),
+  }).onAccept(({ text }) => test(text)),
   <CollectionView
     top='prev()'
     stretch
@@ -24,11 +24,15 @@ contentView.append(
     updateCell={updateCell} />
 );
 
+function test(text) {
+  console.log(text);
+}
+
 function createCell() {
   return (
     <Composite background='gray'>
       <Composite id='container' stretch background='white' onPanHorizontal={handlePan}>
-        <TextView id='senderText' left={16} top='35%' font='medium 16px' />
+        <TextView id='text' left={16} top='35%' font='medium 16px' />
       </Composite>
       <Composite stretchX height={1} background='#eeeeee' />
     </Composite>
@@ -40,7 +44,7 @@ function updateCell(view, index) {
   const container = view.find('#container').only();
   container.item = item;
   container.transform = { translationX: 0 };
-  view.find(TextView).only('#senderText').text = item.sender;
+  view.find(TextView).only('#text').text = item;
 }
 
 async function handlePan(event) {
