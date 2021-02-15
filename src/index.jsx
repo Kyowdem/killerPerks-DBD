@@ -1,4 +1,5 @@
 import { CollectionView, Composite, contentView, TextView, TextInput } from 'tabris';
+import { Cell, ListView } from 'tabris-decorators';
 
 var items = [
   'chilli barbecue',
@@ -12,7 +13,7 @@ contentView.append(
     message: 'Name'
   }).onAccept(({ text }) => addNewItem(text)),
   <ListView background="#FFD400" left="60" top="90" right="60" bottom="50"
-    stretch onSelect={autoCompletionToList} items={autoCompletion()}>
+    stretch onSelect={addNewItem} items={autoCompletion()}>
     <Cell selectable padding={6} height={25}>
       <TextView centerY bind-text='item' font='12px' />
     </Cell>
@@ -107,4 +108,31 @@ async function animateCancel(target) {
 
 function direction(offset) {
   return offset ? offset < 0 ? -1 : 1 : 0;
+}
+
+// Return an array of autocomplete of input user 
+function autoCompletion() {
+  console.log($(TextInput));
+  // if (inputPerk.text == "") return [];
+  // var autoPerk = [];
+
+  // for (let prop in killerPerksJSON) {
+  //   if (prop.substring(0, inputPerk.text.length) == inputPerk.text)
+  //     if (autoPerk.length <= 5)
+  //       autoPerk.push(prop);
+  // }
+  // return autoPerk;
+}
+// Print autocompletion
+function printAutoCompletion() {
+  var autoPerk = autoCompletion();
+  setListView(autoPerk);
+}
+// set list with an array and refresh it
+function setListView(list = []) {
+  if (list.length) visibility(1);
+  else visibility(0);
+
+  $(ListView).first().items = list;
+  $(ListView).first().refresh();
 }
