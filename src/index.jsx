@@ -7,18 +7,15 @@ var items = [
   'sort: immortel',
 ];
 
-var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
 
-var inputPerk = new TextInput({
-  left: 10, right: 10,
-  message: 'Name'
-}).onAccept(({ text }) => addNewItem(text));
+var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
+// Purpose perks after texting
+var perksPurpose = [];
 
 contentView.append(
-  // <TextInput left={10} right={10} message="Perk" onAccept={({ text }) => addNewItem(text)}></TextInput>,
-  inputPerk,
+<TextInput left={10} right={10} message="Perk" onTextChanged={printAutoCompletion} onAccept={({ text }) => addNewItem(text)}></TextInput>,
   <ListView background="#FFD400" top="prev() 10" padding={5} bottom="50" left="5" right="5"
-    stretch onSelect={({ item }) => addNewItem(item)} items={autoCompletion()}>
+    stretch onSelect={({ item }) => addNewItem(item)} items={perksPurpose}>
     <Cell selectable padding={6} height={35}>
       <TextView centerY bind-text='item' font='16px' />
     </Cell>
@@ -124,7 +121,7 @@ function direction(offset) {
 
 // Return an array of autocomplete of input user 
 function autoCompletion() {
-  console.log(inputPerk);
+  // console.log(inputPerk);
   return ["foo", "bar"];
   // if (inputPerk.text == "") return [];
   // var autoPerk = [];
@@ -139,8 +136,7 @@ function autoCompletion() {
 
 // Print autocompletion
 function printAutoCompletion() {
-  var autoPerk = autoCompletion();
-  setListView(autoPerk);
+  setListView(autoCompletion());
 }
 
 // set list with an array and refresh it
