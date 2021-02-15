@@ -12,7 +12,7 @@ var addedPerk = [
 var purposePerk = [];
 
 contentView.append(
-<TextInput left={10} right={10} message="Perk" onTextChanged={printAutoCompletion} onAccept={({ text }) => addNewItem(text)}></TextInput>,
+<TextInput left={10} right={10} message="Perk" onInput={({text}) => printAutoCompletion(text)} onAccept={({ text }) => addNewItem(text)}></TextInput>,
   <ListView background="#FFD400" top="prev() 10" padding={5} bottom="50" left="5" right="5"
     stretch onSelect={({ item }) => addNewItem(item)} items={purposePerk}>
     <Cell selectable padding={6} height={35}>
@@ -119,23 +119,21 @@ function direction(offset) {
 }
 
 // Return an array of autocomplete of input user 
-function autoCompletion() {
-  // console.log(inputPerk);
-  return ["foo", "bar"];
-  // if (inputPerk.text == "") return [];
-  // var autoPerk = [];
+function autoCompletion(perk) {
+  if (perk == "") return [];
+  var autoPerk = [];
 
-  // for (let prop in killerPerksJSON) {
-  //   if (prop.substring(0, inputPerk.text.length) == inputPerk.text)
-  //     if (autoPerk.length <= 5)
-  //       autoPerk.push(prop);
-  // }
-  // return autoPerk;
+  for (let prop in killerPerksJSON) {
+    if (prop.substring(0, perk.length) == perk)
+      if (autoPerk.length <= 5)
+        autoPerk.push(prop);
+  }
+  return autoPerk;
 }
 
 // Print autocompletion
-function printAutoCompletion() {
-  setListView(autoCompletion());
+function printAutoCompletion(perk) {
+  setListView(autoCompletion(perk));
 }
 
 // set list with an array and refresh it
