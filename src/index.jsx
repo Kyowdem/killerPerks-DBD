@@ -54,6 +54,7 @@ function addNewItem(perk) {
   // Stop focused input
   $('TextInput').first().focused = false;
   $('TextInput').first().text = "";
+  visibility(0);
 }
 
 function createCell() {
