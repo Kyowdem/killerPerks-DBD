@@ -11,6 +11,12 @@ contentView.append(
     left: 10, right: 10,
     message: 'Name'
   }).onAccept(({ text }) => addNewItem(text)),
+  <ListView background="#FFD400" left="60" top="90" right="60" bottom="50"
+    stretch onSelect={autoCompletionToList} items={autoCompletion()}>
+    <Cell selectable padding={6} height={25}>
+      <TextView centerY bind-text='item' font='12px' />
+    </Cell>
+  </ListView>,
   <CollectionView
     top='prev()'
     stretch
