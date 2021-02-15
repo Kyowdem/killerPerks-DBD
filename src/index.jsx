@@ -145,3 +145,5 @@ function setListView(list = []) {
 function visibility(visible = 1) {
   $(ListView).first().bottom = (visible ? '50' : '100%');
 }
+
+visibility(0);
