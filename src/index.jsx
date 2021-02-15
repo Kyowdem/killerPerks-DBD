@@ -124,11 +124,13 @@ function autoCompletion() {
   // }
   // return autoPerk;
 }
+
 // Print autocompletion
 function printAutoCompletion() {
   var autoPerk = autoCompletion();
   setListView(autoPerk);
 }
+
 // set list with an array and refresh it
 function setListView(list = []) {
   if (list.length) visibility(1);
@@ -136,4 +138,9 @@ function setListView(list = []) {
 
   $(ListView).first().items = list;
   $(ListView).first().refresh();
+}
+
+// show/hide ListView
+function visibility(visible = 1) {
+  $(ListView).first().bottom = (visible ? '50' : '100%');
 }
