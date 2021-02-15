@@ -99,7 +99,7 @@ async function animateDismiss(target, translationX) {
   });
   const index = items.indexOf(target.item);
   items.splice(index, 1);
-  $(CollectionView).only().remove(index);
+  $(CollectionView).last().remove(index);
   console.log(items);
 }
 
