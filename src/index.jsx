@@ -27,6 +27,12 @@ contentView.append(
     updateCell={updateCell} />
 );
 
+main();
+
+function main() {
+  visibility(0);
+}
+
 function addNewItem(perk) {
   console.log(perk);
   if (items.some(x => x == perk)) {
@@ -145,5 +151,3 @@ function setListView(list = []) {
 function visibility(visible = 1) {
   $(ListView).first().bottom = (visible ? '50' : '100%');
 }
-
-visibility(0);
