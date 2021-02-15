@@ -1,7 +1,7 @@
 const URLJSON = "https://json.extendsclass.com/bin/64c447c371b3";
 var killerPerksJSON = {};
 
-function putJSON(killerPerks) {
+export function putJSON(killerPerks) {
     for (let i = 0; i < killerPerks.length; i++) {
         const perk = killerPerks[i];
         killerPerksJSON[perk] != undefined ? killerPerksJSON[perk] += 1 : killerPerksJSON[perk] = 0;
@@ -10,7 +10,7 @@ function putJSON(killerPerks) {
     // sendJSON();
 }
 
-const getJSON = function () {
+export const getJSON = function () {
     const request = new XMLHttpRequest();
     request.open("GET", URLJSON, true);
     request.onreadystatechange = () => {
@@ -32,5 +32,3 @@ const sendJSON = function () {
 
     console.log('Les donnees ont été envoyé');
 }
-
-module.exports = { putJSON, getJSON }
