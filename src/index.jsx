@@ -21,13 +21,16 @@ contentView.append(
 );
 
 function addNewItem(perk) {
-  if(items.length < 4) {
+  if (items.filter(x => x == perk).length) {
+    console.log("Item has already been added");
+  }
+  if (items.length < 4) {
     items.push(perk);
     $("CollectionView").first().refresh();
     $("CollectionView").first().insert(0);
   }
   // Print message after 4 perk added
-  if(items.length > 3) {
+  if (items.length > 3) {
     console.log('foo');
     // Afficher le message pour envoyer les donnees dans la base
   }
