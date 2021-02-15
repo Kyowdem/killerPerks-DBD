@@ -13,7 +13,7 @@ contentView.append(
     message: 'Name'
   }).onAccept(({ text }) => addNewItem(text)),
   <ListView background="#FFD400" top="prev() 10" padding={5} bottom="50" left="5" right="5"
-    stretch onSelect={addNewItem} items={autoCompletion()}>
+    stretch onSelect={({item}) => addNewItem(item)} items={autoCompletion()}>
     <Cell selectable padding={6} height={35}>
       <TextView centerY bind-text='item' font='16px' />
     </Cell>
@@ -28,6 +28,7 @@ contentView.append(
 );
 
 function addNewItem(perk) {
+  console.log(perk);
   if (items.some(x => x == perk)) {
     console.log(`This perk (${perk}) has already been added`);
   }
