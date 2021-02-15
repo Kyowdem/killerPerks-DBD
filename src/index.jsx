@@ -1,10 +1,10 @@
 import { CollectionView, Composite, contentView, TextView, TextInput, AlertDialog } from 'tabris';
 import { Cell, ListView } from 'tabris-decorators';
-import { killerPerksJSON } from './components/JSON'
+import { killerPerksJSON, putJSON } from './components/JSON'
 
 
 // Added perk after confirm typing
-var addedPerk = [
+var addedPerks = [
   'chilli barbecue',
   'sort: ruine',
   'sort: immortel',
@@ -23,7 +23,7 @@ contentView.append(
   <CollectionView
     top='prev()'
     stretch
-    itemCount={addedPerk.length}
+    itemCount={addedPerks.length}
     cellHeight={50}
     createCell={createCell}
     updateCell={updateCell} />
@@ -44,17 +44,18 @@ function popup(text) {
 
 function addNewItem(perk) {
   console.log(perk);
-  if (addedPerk.some(x => x == perk)) {
+  if (addedPerks.some(x => x == perk)) {
     popup(`The perk "${perk}" has already been added`);
   }
-  else if (addedPerk.length < 4) {
-    addedPerk.push(perk);
+  else if (addedPerks.length < 4) {
+    addedPerks.push(perk);
     $("CollectionView").first().refresh();
     $("CollectionView").first().insert(0);
   }
   // Print message after 4 perk added
-  if (addedPerk.length > 3) {
+  if (addedPerks.length > 3) {
     popup('Les 4 perk seront ajoutés');
+    putJSON(addedPerks);
     // Afficher le message pour envoyer les donnees dans la base
   }
 
@@ -77,7 +78,7 @@ function createCell() {
 }
 
 function updateCell(view, index) {
-  const item = addedPerk[index];
+  const item = addedPerks[index];
   const container = view.find('#container').only();
   container.item = item;
   container.transform = { translationX: 0 };
@@ -113,10 +114,10 @@ async function animateDismiss(target, translationX) {
     duration: 200,
     easing: 'ease-out'
   });
-  const index = addedPerk.indexOf(target.item);
-  addedPerk.splice(index, 1);
+  const index = addedPerks.indexOf(target.item);
+  addedPerks.splice(index, 1);
   $(CollectionView).last().remove(index);
-  console.log(addedPerk);
+  console.log(addedPerks);
 }
 
 async function animateCancel(target) {
