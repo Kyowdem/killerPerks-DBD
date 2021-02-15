@@ -7,13 +7,18 @@ var items = [
   'sort: immortel',
 ];
 
+var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
+
+var inputPerk = new TextInput({
+  left: 10, right: 10,
+  message: 'Name'
+}).onAccept(({ text }) => addNewItem(text));
+
 contentView.append(
-  new TextInput({
-    left: 10, right: 10,
-    message: 'Name'
-  }).onAccept(({ text }) => addNewItem(text)),
+  // <TextInput left={10} right={10} message="Perk" onAccept={({ text }) => addNewItem(text)}></TextInput>,
+  inputPerk,
   <ListView background="#FFD400" top="prev() 10" padding={5} bottom="50" left="5" right="5"
-    stretch onSelect={({item}) => addNewItem(item)} items={autoCompletion()}>
+    stretch onSelect={({ item }) => addNewItem(item)} items={autoCompletion()}>
     <Cell selectable padding={6} height={35}>
       <TextView centerY bind-text='item' font='16px' />
     </Cell>
@@ -119,8 +124,8 @@ function direction(offset) {
 
 // Return an array of autocomplete of input user 
 function autoCompletion() {
+  console.log(inputPerk);
   return ["foo", "bar"];
-  // console.log($(TextInput));
   // if (inputPerk.text == "") return [];
   // var autoPerk = [];
 
