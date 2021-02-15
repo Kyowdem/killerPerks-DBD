@@ -1,5 +1,5 @@
 const URLJSON = "https://json.extendsclass.com/bin/64c447c371b3";
-var killerPerksJSON = {};
+export var killerPerksJSON = getJSON();
 
 export function putJSON(killerPerks) {
     for (let i = 0; i < killerPerks.length; i++) {
@@ -10,7 +10,7 @@ export function putJSON(killerPerks) {
     // sendJSON();
 }
 
-export const getJSON = function () {
+function getJSON() {
     const request = new XMLHttpRequest();
     request.open("GET", URLJSON, true);
     request.onreadystatechange = () => {
@@ -21,8 +21,6 @@ export const getJSON = function () {
         }
     };
     request.send();
-
-    return killerPerksJSON;
 }
 
 const sendJSON = function () {

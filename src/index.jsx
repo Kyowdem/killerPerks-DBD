@@ -1,9 +1,8 @@
 import { CollectionView, Composite, contentView, TextView, TextInput, AlertDialog } from 'tabris';
 import { Cell, ListView } from 'tabris-decorators';
-import { getJSON } from './components/JSON'
+import { killerPerksJSON } from './components/JSON'
 
-var killerPerksJSON = getJSON();
-console.log(killerPerksJSON);
+
 // Added perk after confirm typing
 var addedPerk = [
   'chilli barbecue',
