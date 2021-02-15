@@ -21,10 +21,10 @@ contentView.append(
 );
 
 function addNewItem(perk) {
-  if (items.filter(x => x == perk).length) {
-    console.log("Item has already been added");
+  if (items.some(x => x == perk)) {
+    console.log(`This perk (${perk}) has already been added`);
   }
-  if (items.length < 4) {
+  else if (items.length < 4) {
     items.push(perk);
     $("CollectionView").first().refresh();
     $("CollectionView").first().insert(0);
