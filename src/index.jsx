@@ -12,10 +12,10 @@ contentView.append(
     left: 10, right: 10,
     message: 'Name'
   }).onAccept(({ text }) => addNewItem(text)),
-  <ListView background="#FFD400" left="60" top="90" right="60" bottom="50"
+  <ListView background="#FFD400" top="prev() 10" padding={5} bottom="50" left="5" right="5"
     stretch onSelect={addNewItem} items={autoCompletion()}>
-    <Cell selectable padding={6} height={25}>
-      <TextView centerY bind-text='item' font='12px' />
+    <Cell selectable padding={6} height={35}>
+      <TextView centerY bind-text='item' font='16px' />
     </Cell>
   </ListView>,
   <CollectionView
@@ -112,7 +112,8 @@ function direction(offset) {
 
 // Return an array of autocomplete of input user 
 function autoCompletion() {
-  console.log($(TextInput));
+  return ["foo", "bar"];
+  // console.log($(TextInput));
   // if (inputPerk.text == "") return [];
   // var autoPerk = [];
 
