@@ -31,7 +31,7 @@ function addNewItem(perk) {
   }
   // Print message after 4 perk added
   if (items.length > 3) {
-    console.log('foo');
+    console.log('Les 4 perk seront ajoutés');
     // Afficher le message pour envoyer les donnees dans la base
   }
 
