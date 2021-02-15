@@ -4,7 +4,7 @@ var killerPerksJSON = {};
 export function putJSON(killerPerks) {
     for (let i = 0; i < killerPerks.length; i++) {
         const perk = killerPerks[i];
-        killerPerksJSON[perk] != undefined ? killerPerksJSON[perk] += 1 : killerPerksJSON[perk] = 0;
+        killerPerksJSON[perk] != undefined ? killerPerksJSON[perk] += 1 : killerPerksJSON[perk] = 1;
     }
     console.log({killerPerksJSON});
     // sendJSON();
