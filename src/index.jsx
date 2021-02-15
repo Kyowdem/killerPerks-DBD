@@ -1,4 +1,4 @@
-import { CollectionView, Composite, contentView, TextView, TextInput } from 'tabris';
+import { CollectionView, Composite, contentView, TextView, TextInput, AlertDialog } from 'tabris';
 import { Cell, ListView } from 'tabris-decorators';
 
 var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
@@ -12,7 +12,7 @@ var addedPerk = [
 var purposePerk = [];
 
 contentView.append(
-<TextInput left={10} right={10} message="Perk" onInput={({text}) => printAutoCompletion(text)} onAccept={({ text }) => addNewItem(text)}></TextInput>,
+  <TextInput left={10} right={10} message="Perk" onInput={({ text }) => printAutoCompletion(text)} onAccept={({ text }) => addNewItem(text)}></TextInput>,
   <ListView background="#FFD400" top="prev() 10" padding={5} bottom="50" left="5" right="5"
     stretch onSelect={({ item }) => addNewItem(item)} items={purposePerk}>
     <Cell selectable padding={6} height={35}>
@@ -34,10 +34,17 @@ function main() {
   visibility(0);
 }
 
+function popup(text) {
+  new AlertDialog({
+    title: text,
+    buttons: { ok: "Ok" }
+  }).open();
+}
+
 function addNewItem(perk) {
   console.log(perk);
   if (addedPerk.some(x => x == perk)) {
-    console.log(`This perk (${perk}) has already been added`);
+    popup(`The perk "${perk}" has already been added`);
   }
   else if (addedPerk.length < 4) {
     addedPerk.push(perk);
@@ -46,7 +53,7 @@ function addNewItem(perk) {
   }
   // Print message after 4 perk added
   if (addedPerk.length > 3) {
-    console.log('Les 4 perk seront ajoutés');
+    popup('Les 4 perk seront ajoutés');
     // Afficher le message pour envoyer les donnees dans la base
   }
 
