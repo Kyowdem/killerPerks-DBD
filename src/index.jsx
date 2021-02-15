@@ -1,21 +1,20 @@
 import { CollectionView, Composite, contentView, TextView, TextInput } from 'tabris';
 import { Cell, ListView } from 'tabris-decorators';
 
-var items = [
+var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
+// Added perk after confirm typing
+var addedPerk = [
   'chilli barbecue',
   'sort: ruine',
   'sort: immortel',
 ];
-
-
-var killerPerksJSON = { "chilli barbecue": 0, "ruine": 0, "chilli et ruine": 0, "bar": 0, "une competence": 0, "baz": 0 };
-// Purpose perks after texting
-var perksPurpose = [];
+// Purpose perks on typing
+var purposePerk = [];
 
 contentView.append(
 <TextInput left={10} right={10} message="Perk" onTextChanged={printAutoCompletion} onAccept={({ text }) => addNewItem(text)}></TextInput>,
   <ListView background="#FFD400" top="prev() 10" padding={5} bottom="50" left="5" right="5"
-    stretch onSelect={({ item }) => addNewItem(item)} items={perksPurpose}>
+    stretch onSelect={({ item }) => addNewItem(item)} items={purposePerk}>
     <Cell selectable padding={6} height={35}>
       <TextView centerY bind-text='item' font='16px' />
     </Cell>
@@ -23,7 +22,7 @@ contentView.append(
   <CollectionView
     top='prev()'
     stretch
-    itemCount={items.length}
+    itemCount={addedPerk.length}
     cellHeight={50}
     createCell={createCell}
     updateCell={updateCell} />
@@ -37,16 +36,16 @@ function main() {
 
 function addNewItem(perk) {
   console.log(perk);
-  if (items.some(x => x == perk)) {
+  if (addedPerk.some(x => x == perk)) {
     console.log(`This perk (${perk}) has already been added`);
   }
-  else if (items.length < 4) {
-    items.push(perk);
+  else if (addedPerk.length < 4) {
+    addedPerk.push(perk);
     $("CollectionView").first().refresh();
     $("CollectionView").first().insert(0);
   }
   // Print message after 4 perk added
-  if (items.length > 3) {
+  if (addedPerk.length > 3) {
     console.log('Les 4 perk seront ajoutés');
     // Afficher le message pour envoyer les donnees dans la base
   }
@@ -69,7 +68,7 @@ function createCell() {
 }
 
 function updateCell(view, index) {
-  const item = items[index];
+  const item = addedPerk[index];
   const container = view.find('#container').only();
   container.item = item;
   container.transform = { translationX: 0 };
@@ -105,10 +104,10 @@ async function animateDismiss(target, translationX) {
     duration: 200,
     easing: 'ease-out'
   });
-  const index = items.indexOf(target.item);
-  items.splice(index, 1);
+  const index = addedPerk.indexOf(target.item);
+  addedPerk.splice(index, 1);
   $(CollectionView).last().remove(index);
-  console.log(items);
+  console.log(addedPerk);
 }
 
 async function animateCancel(target) {
