@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="Kyowdem.dbd" version="0.1.0">
-  <name>DBD</name>
+<widget id="Kyowdem.dbd" version="1.0.0">
+  <name>DBD Perk</name>
   <description>
-    Example Tabris.js App
+    Stat for killer perks on Dead By Daylight
   </description>
   <author email="collomb.mehdi@gmail.com">
-    Collomb Mehdi
+    Kyowdem
   </author>
   <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
 </widget>
