@@ -10,7 +10,7 @@ var purposePerk = [];
 
 contentView.append(
   <TextInput left={10} right={10} message="Perk" onInput={({ text }) => printAutoCompletion(text)} onAccept={({ text }) => addNewItem(text)}></TextInput>,
-  <ListView background="#FFD400" top="prev() 10" padding={5} bottom="50" left="5" right="5"
+  <ListView background="#fff" top="prev() 10" padding={5} bottom="50" left="5" right="5"
     stretch onSelect={({ item }) => addNewItem(item)} items={purposePerk}>
     <Cell selectable padding={6} height={35}>
       <TextView centerY bind-text='item' font='16px' />
