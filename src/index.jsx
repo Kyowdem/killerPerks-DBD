@@ -51,7 +51,10 @@ function addNewItem(perk) {
   if (addedPerks.length > 3) {
     popup('Les 4 perk seront ajoutés');
     putJSON(addedPerks);
-    // Afficher le message pour envoyer les donnees dans la base
+    
+    // Empty after added it to cloud
+    for (let i = 0; i < 4; i++) $(CollectionView).last().remove(0);
+    addedPerks = [];
   }
 
 
