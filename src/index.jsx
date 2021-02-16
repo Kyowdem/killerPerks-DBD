@@ -4,11 +4,7 @@ import { killerPerksJSON, putJSON } from './components/JSON'
 
 
 // Added perk after confirm typing
-var addedPerks = [
-  'chilli barbecue',
-  'sort: ruine',
-  'sort: immortel',
-];
+var addedPerks = [];
 // Purpose perks on typing
 var purposePerk = [];
 
