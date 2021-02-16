@@ -8,7 +8,5 @@
     Kyowdem
   </author>
   <preference name="EnableDeveloperConsole" value="$IS_DEBUG" />
-  <platform name="android">
-    <icon src="res/icon.png" />
-  </platform>
+  <icon src="res/icon.png" />
 </widget>
