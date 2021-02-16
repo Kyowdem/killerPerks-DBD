@@ -39,7 +39,6 @@ function popup(text) {
 }
 
 function addNewItem(perk) {
-  console.log(perk);
   if (addedPerks.some(x => x == perk)) {
     popup(`The perk "${perk}" has already been added`);
   }
@@ -113,7 +112,6 @@ async function animateDismiss(target, translationX) {
   const index = addedPerks.indexOf(target.item);
   addedPerks.splice(index, 1);
   $(CollectionView).last().remove(index);
-  console.log(addedPerks);
 }
 
 async function animateCancel(target) {
