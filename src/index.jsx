@@ -143,7 +143,10 @@ function autoCompletion(perk) {
 
 // Print autocompletion
 function printAutoCompletion(perk) {
-  setListView(autoCompletion(perk));
+  if (perk.length >= 3)
+    setListView(autoCompletion(perk));
+  else
+    setListView();
 }
 
 // set list with an array and refresh it
