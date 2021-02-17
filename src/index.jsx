@@ -43,7 +43,7 @@ function addNewItem(perk) {
     popup(`The perk "${perk}" has already been added`);
   }
   else if (addedPerks.length < 4) {
-    addedPerks.push(perk);
+    addedPerks.push(perk.toLowerCase());
     $("CollectionView").first().refresh();
     $("CollectionView").first().insert(0);
   }
