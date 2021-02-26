@@ -1,5 +1,5 @@
 const URLJSON = "https://json.extendsclass.com/bin/64c447c371b3";
-export var killerPerksJSON = getJSON();
+// export var killerPerksJSON = getJSON();
 
 export function putJSON(killerPerks) {
     for (let i = 0; i < killerPerks.length; i++) {
@@ -7,7 +7,7 @@ export function putJSON(killerPerks) {
         killerPerksJSON[perk] != undefined ? killerPerksJSON[perk] += 1 : killerPerksJSON[perk] = 1;
     }
     console.log({killerPerksJSON});
-    sendJSON();
+    // sendJSON();
 }
 
 function getJSON() {
