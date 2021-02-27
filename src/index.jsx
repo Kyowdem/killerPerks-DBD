@@ -141,7 +141,7 @@ function autoCompletion(perk) {
 
   for (let prop in killerPerksJSON) {
       if (prop.substring(0, perk.length) == perk)
-          if (autoPerk.length <= 5)
+          if (autoPerk.length < 5)
               autoPerk.push(prop);
   }
   return autoPerk;
