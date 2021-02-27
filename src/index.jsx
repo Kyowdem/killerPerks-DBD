@@ -4,7 +4,7 @@ import { killerPerksJSON, putJSON } from './components/JSON'
 
 
 // Added perk after confirm typing
-var addedPerks = [];
+var addedPerks = ["foo", "bar", "baz"];
 // Purpose perks on typing
 var purposePerk = [];
 
@@ -130,12 +130,16 @@ function addNewItem(perk) {
 }
 
 function sendPerkToJSON() {
-  popup('Les 4 perk seront ajoutés');
-  putJSON(addedPerks);
+  new AlertDialog({
+    title: "Les 4 perk seront ajoutés",
+    buttons: { ok: "Ok", cancel: "Cancel" }
+  }).open().onCloseOk(() => {
+    putJSON(addedPerks);
+    for (let i = 0; i < 4; i++) $(CollectionView).last().remove(0);
+    // Empty after added it to cloud
+    addedPerks = [];
+  });
 
-  // Empty after added it to cloud
-  for (let i = 0; i < 4; i++) $(CollectionView).last().remove(0);
-  addedPerks = [];
 }
 
 // Return an array of autocomplete of input user 
