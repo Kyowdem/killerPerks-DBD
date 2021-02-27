@@ -1,7 +1,6 @@
 import { CollectionView, Composite, contentView, TextView, TextInput, AlertDialog } from 'tabris';
 import { Cell, ListView } from 'tabris-decorators';
 import { killerPerksJSON, putJSON } from './components/JSON'
-import { printAutoCompletion, addNewItem, visibility } from './components/input'
 
 
 // Added perk after confirm typing
