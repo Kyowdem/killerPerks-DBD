@@ -6,7 +6,13 @@ export var killerPerksJSON = [{ "name": "chilli barbecue", "value": 19 }, { "nam
 export function putJSON(killerPerks) {
     for (let i = 0; i < killerPerks.length; i++) {
         const perk = killerPerks[i];
-        killerPerksJSON[perk] != undefined ? killerPerksJSON[perk] += 1 : killerPerksJSON[perk] = 1;
+
+        var index = killerPerksJSON.findIndex(el => el.name == perk);
+        if (index)
+            ++killerPerksJSON[index].value;
+        else
+            killerPerksJSON.push(JSON.parse(`"name": "${perk}", "value": 1`))
+
     }
     console.log({ killerPerksJSON });
     killerPerksJSON = killerPerksJSON.sort((a, b) => a.value - b.value).reverse();
