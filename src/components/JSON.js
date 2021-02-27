@@ -11,7 +11,7 @@ export function putJSON(killerPerks) {
         if (index != -1)
             ++killerPerksJSON[index].value;
         else
-            killerPerksJSON.push(JSON.parse(`"name": "${perk}", "value": 1`))
+            killerPerksJSON.push({"name": "${perk}", "value": 1})
 
     }
 
