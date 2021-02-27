@@ -147,7 +147,8 @@ function autoCompletion(perk) {
   if (perk == "") return [];
   var autoPerk = [];
 
-  for (let prop in killerPerksJSON) {
+  for (let i = 0; i < killerPerksJSON.length; i++) {
+    var prop = killerPerksJSON[i].name
     if (prop.substring(0, perk.length) == perk)
       if (autoPerk.length < 5)
         autoPerk.push(prop);
