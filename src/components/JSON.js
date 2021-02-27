@@ -8,14 +8,15 @@ export function putJSON(killerPerks) {
         const perk = killerPerks[i];
 
         var index = killerPerksJSON.findIndex(el => el.name == perk);
-        if (index)
+        if (index != -1)
             ++killerPerksJSON[index].value;
         else
             killerPerksJSON.push(JSON.parse(`"name": "${perk}", "value": 1`))
 
     }
-    console.log({ killerPerksJSON });
+
     killerPerksJSON = killerPerksJSON.sort((a, b) => a.value - b.value).reverse();
+    console.log({ killerPerksJSON });
     // sendJSON();
 }
 
