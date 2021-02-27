@@ -103,19 +103,19 @@ function direction(offset) {
 // Print autocompletion
 function printAutoCompletion(perk) {
   if (perk.length >= 3)
-      setListView(autoCompletion(perk));
+    setListView(autoCompletion(perk));
   else
-      setListView();
+    setListView();
 }
 
 function addNewItem(perk) {
   if (addedPerks.some(x => x == perk)) {
-      popup(`The perk "${perk}" has already been added`);
+    popup(`The perk "${perk}" has already been added`);
   }
   else if (addedPerks.length < 4) {
-      addedPerks.push(perk.toLowerCase());
-      $("CollectionView").first().refresh();
-      $("CollectionView").first().insert(0);
+    addedPerks.push(perk.toLowerCase());
+    $("CollectionView").first().refresh();
+    $("CollectionView").first().insert(0);
   }
   // Print message after 4 perk added
   if (addedPerks.length > 3) {
@@ -144,9 +144,9 @@ function autoCompletion(perk) {
   var autoPerk = [];
 
   for (let prop in killerPerksJSON) {
-      if (prop.substring(0, perk.length) == perk)
-          if (autoPerk.length < 5)
-              autoPerk.push(prop);
+    if (prop.substring(0, perk.length) == perk)
+      if (autoPerk.length < 5)
+        autoPerk.push(prop);
   }
   return autoPerk;
 }
