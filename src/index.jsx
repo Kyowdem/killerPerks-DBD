@@ -119,12 +119,7 @@ function addNewItem(perk) {
   }
   // Print message after 4 perk added
   if (addedPerks.length > 3) {
-      popup('Les 4 perk seront ajoutés');
-      putJSON(addedPerks);
-
-      // Empty after added it to cloud
-      for (let i = 0; i < 4; i++) $(CollectionView).last().remove(0);
-      addedPerks = [];
+    sendPerkToJSON();
   }
 
 
@@ -132,6 +127,15 @@ function addNewItem(perk) {
   $('TextInput').first().focused = false;
   $('TextInput').first().text = "";
   visibility(0);
+}
+
+function sendPerkToJSON() {
+  popup('Les 4 perk seront ajoutés');
+  putJSON(addedPerks);
+
+  // Empty after added it to cloud
+  for (let i = 0; i < 4; i++) $(CollectionView).last().remove(0);
+  addedPerks = [];
 }
 
 // Return an array of autocomplete of input user 
