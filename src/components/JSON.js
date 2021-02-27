@@ -9,6 +9,7 @@ export function putJSON(killerPerks) {
         killerPerksJSON[perk] != undefined ? killerPerksJSON[perk] += 1 : killerPerksJSON[perk] = 1;
     }
     console.log({ killerPerksJSON });
+    killerPerksJSON = killerPerksJSON.sort((a, b) => a.value - b.value).reverse();
     // sendJSON();
 }
 
