@@ -149,7 +149,8 @@ function autoCompletion(perk) {
 
   for (let i = 0; i < killerPerksJSON.length; i++) {
     var prop = killerPerksJSON[i].name
-    if (prop.substring(0, perk.length) == perk)
+    if (prop.includes(perk))
+      // Limit to 5 element
       if (autoPerk.length < 5)
         autoPerk.push(prop);
   }
